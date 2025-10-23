@@ -50,12 +50,17 @@ defineProps<{
 
 function getInitials(name: string): string {
   const names = name.split(' ')
-  // Changed: Use optional chaining to safely access array elements
-  const firstInitial = names[0]?.[0]
-  const lastInitial = names[names.length - 1]?.[0]
+  // Changed: Safely access array elements with proper undefined checks
+  const firstName = names[0]
+  const lastName = names[names.length - 1]
   
-  if (names.length >= 2 && firstInitial && lastInitial) {
-    return (firstInitial + lastInitial).toUpperCase()
+  // Ensure both exist and get first character
+  if (names.length >= 2 && firstName && lastName) {
+    const firstInitial = firstName[0]
+    const lastInitial = lastName[0]
+    if (firstInitial && lastInitial) {
+      return (firstInitial + lastInitial).toUpperCase()
+    }
   }
   return name.substring(0, 2).toUpperCase()
 }
