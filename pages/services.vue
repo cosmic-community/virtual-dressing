@@ -28,7 +28,7 @@
           <button
             v-for="category in categories"
             :key="category.key"
-            @click="selectedCategory = category.key as ServiceCategory"
+            @click="selectedCategory = category.key"
             :class="[
               'px-4 py-2 rounded-lg font-medium transition-colors',
               selectedCategory === category.key
@@ -75,8 +75,8 @@ import type { Service, ServiceCategory } from '~/types'
 // Category filter state
 const selectedCategory = ref<ServiceCategory | null>(null)
 
-// Available categories
-const categories = [
+// Available categories - Changed: Use ServiceCategory type for keys
+const categories: Array<{ key: ServiceCategory; value: string }> = [
   { key: 'consulting', value: 'Consulting' },
   { key: 'development', value: 'Development' },
   { key: 'design', value: 'Design' },

@@ -50,9 +50,12 @@ defineProps<{
 
 function getInitials(name: string): string {
   const names = name.split(' ')
-  // Changed: Add proper bounds checking to prevent "possibly undefined" error
-  if (names.length >= 2 && names[0] && names[names.length - 1]) {
-    return (names[0][0] + names[names.length - 1][0]).toUpperCase()
+  // Changed: Use optional chaining to safely access array elements
+  const firstInitial = names[0]?.[0]
+  const lastInitial = names[names.length - 1]?.[0]
+  
+  if (names.length >= 2 && firstInitial && lastInitial) {
+    return (firstInitial + lastInitial).toUpperCase()
   }
   return name.substring(0, 2).toUpperCase()
 }
