@@ -28,7 +28,7 @@
           <button
             v-for="category in categories"
             :key="category.key"
-            @click="selectedCategory = category.key"
+            @click="selectedCategory = category.key as ServiceCategory"
             :class="[
               'px-4 py-2 rounded-lg font-medium transition-colors',
               selectedCategory === category.key
